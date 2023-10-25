@@ -1,30 +1,15 @@
-import {
-  Given,
-  When,
-  Then,
-} from "@badeball/cypress-cucumber-preprocessor";
-import {scanSourcePage} from '@pages/ScanSourcePage' 
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { scanSourcePage } from "@pages/ScanSourcePage";
 
-Given("A web browser is at the saucelabs login page", () => {
-  cy.visit(url);
+Given("que estou logado no site da amazon com o usuario", () => {
+  cy.visit("/");
+  scanSourcePage.realizarLogin("scan.teste.2019@gmail.com", "Scansource2022");
 });
 
-When("A user enters the username {string}, the password {string}, and clicks on the login button", (username,password) => {
-  scanSourcePage.submitLogin(username,password)
-  
+When("quando realizo uma compra via boleto", () => {
+  scanSourcePage.realizaCompra("tv 55");
 });
 
-When("A user provides incorrect credentials, and clicks on the login button", (table) => {
-  table.hashes().forEach((row) => {
-    cy.log(row.username);
-    cy.log(row.password);
-    scanSourcePage.submitLogin(row.username, row.password)
-
-  });
-});
-Then("the url will contains the inventory subdirectory", () => {
-  cy.url().should("contains", "/inventory.html");
-});
-Then("The error message {string} is displayed", (errorMessage) => {
-  scanSourcePage.elements.errorMessage().should("have.text", errorMessage);
+Then("a compra e realizada com sucesso", () => {
+  cy.contains('h4', 'obrigado').should('be.visible');
 });
