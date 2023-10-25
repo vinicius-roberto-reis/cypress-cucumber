@@ -1,12 +1,20 @@
 name: Cypress Test Manual
 
 on:
-  workflow_dispatch:  #permite o acionamento manual
+  workflow_dispatch:  # Permite o acionamento manual
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        test_file:
+          - Contact_Us.feature
+          - Orange.feature
+          - Saucelabs.feature
+          - ScanSource.feature
+          - Other_Test4.feature
     steps:
     - name: Checkout projeto
       uses: actions/checkout@v2
@@ -14,13 +22,16 @@ jobs:
     - name: Configurar o Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: 18
+        node-version: 14  # Escolha a versão do Node.js que você está usando
 
     - name: Instalar dependências
       run: npm install --force
 
     - name: Executar testes Cypress
-      run: npx cypress run --spec "cypress/e2e/features/Contact_Us.feature"
+      run: npx cypress run --spec "cypress/e2e/features/${{ matrix.test_file }}"
+
+    - name: verificar diretorio
+      run: ls
 
     - name: Publicar resultados dos testes
       uses: actions/upload-artifact@v2
