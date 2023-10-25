@@ -11,5 +11,5 @@ When("quando realizo uma compra via boleto", () => {
 });
 
 Then("a compra e realizada com sucesso", () => {
-  cy.contains('h4', 'obrigado').should('be.visible'); //esse codigo vai para o metodo de validacao no pege..
+  cy.contains('h4', 'obrigado,').should('be.visible'); //esse codigo vai para o metodo de validacao no pege..
 });
