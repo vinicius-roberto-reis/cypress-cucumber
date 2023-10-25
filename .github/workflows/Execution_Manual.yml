@@ -3,14 +3,15 @@ name: Cypress Test Manual
 on:
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Choose the environment to deploy (hml, dev, or prod)'
+      execution:
+        description: 'Digite a feature que deseja executar'
         required: true
-        default: 'dev'
+        default: 'Orange.feature'
         options:
-          - hml
-          - dev
-          - prod
+          - Contact_Us.feature
+          - Orange.feature
+          - Saucelabs.feature
+          - ScanSource.feature
 
 jobs:
   build:
@@ -37,7 +38,7 @@ jobs:
       run: npm install --force
 
     - name: Executar testes Cypress
-      run: npx cypress run --spec "cypress/e2e/features/${{ matrix.test_file }}"
+      run: npx cypress run --spec "cypress/e2e/features/${{ inputs.execution }}"
 
     - name: verificar diretorio
       run: ls
