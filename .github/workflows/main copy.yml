@@ -1,4 +1,4 @@
-name: Cypress Test
+name: Cypress Test Manual
 
 on:
   workflow_dispatch:  #permite o acionamento manual
@@ -17,7 +17,7 @@ jobs:
         node-version: 18
 
     - name: Instalar dependências
-      run: npm install
+      run: npm install --force
 
     - name: Executar testes Cypress
       run: npx cypress run --spec "cypress/e2e/features/Contact_Us.feature"
