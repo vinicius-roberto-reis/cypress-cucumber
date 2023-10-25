@@ -1,7 +1,16 @@
 name: Cypress Test Manual
 
 on:
-  workflow_dispatch:  # Permite o acionamento manual
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Choose the environment to deploy (hml, dev, or prod)'
+        required: true
+        default: 'dev'
+        options:
+          - hml
+          - dev
+          - prod
 
 jobs:
   build:
