@@ -36,7 +36,7 @@ npm install
 npm install
 ```
 
-##Executando os Testes
+## Executando os Testes
 Abra o Cypress usando o seguinte comando:
 
 ```bash
