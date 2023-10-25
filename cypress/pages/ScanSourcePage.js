@@ -16,7 +16,7 @@ class ScanSourcePage {
     opcao_boleto: () => cy.get('input[name="ppw-instrumentRowSelection"]'),
     btn_usar_essa_forma_pgto: () => cy.get('input.a-button-input[type="submit"][aria-labelledby="orderSummaryPrimaryActionBtn-announce"]'),
     btn_proxima_etapa: () => cy.contains('Próxima etapa'),
-    btn_finalizar_pedido: () => cy.get('input[name="placeYourOrder1"]').click(),
+    btn_finalizar_pedido: () => cy.get('input[name="placeYourOrder1"]'),
     txt_sucesso_pedido: () => cy.get('h3[data-test="Obrigado,"'),
     
   };
