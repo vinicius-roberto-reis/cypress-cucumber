@@ -1,0 +1,29 @@
+name: Cypress Test
+
+on:
+  workflow_dispatch:  #permite o acionamento manual
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout projeto
+      uses: actions/checkout@v2
+
+    - name: Configurar o Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 18
+
+    - name: Instalar dependências
+      run: npm install
+
+    - name: Executar testes Cypress
+      run: npx cypress run --spec "cypress/e2e/features/Contact_Us.feature"
+
+    - name: Publicar resultados dos testes
+      uses: actions/upload-artifact@v2
+      with:
+        name: cypress-results
+        path: cypress/screenshots

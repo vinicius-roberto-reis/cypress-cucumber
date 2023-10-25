@@ -2,10 +2,7 @@ class OrangePage {
   elements = {
     usernameInput: () => cy.get('input[name="username"]'),
     passwordInput: () => cy.get('input[name="password"]'),
-    loginBtn: () =>
-      cy.get(
-        "button.oxd-button.oxd-button--medium.oxd-button--main.orangehrm-login-button"
-      ),
+    loginBtn: () => cy.get("button.oxd-button.oxd-button--medium.oxd-button--main.orangehrm-login-button"),
     menu_dashboard: () => cy.get("a.oxd-main-menu-item.active"),
   };
 
